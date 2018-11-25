@@ -24,17 +24,17 @@ class App extends Component {
       this.setState({
         count: this.state.count + 1
       })
-    }, 400)
+    }, 1000)
   }
 
   render() {
-    const {count, columns, rows} = this.state
+    const { count, columns, rows } = this.state
 
     return (
       <div className="App" style={style.App} >
-        {[...Array(columns)].map((x, i) =>
-          <Column key={"column" + i} rows={rows} count={count} />
-        )}
+        {
+          Array(columns).fill(0).map((x, i) => <Column key={"column" + i} rows={rows} count={count} />)
+        }
       </div>
     );
   }

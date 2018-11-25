@@ -15,7 +15,7 @@ class Caract extends Component {
         this.state = {
             caract: String.fromCharCode(Math.round(Math.random() * 1000) + 192),
             opacity: opacityRef,
-            color: 'green'
+            color: 'red'
         }
     }
     componentWillReceiveProps(nextProps) {
@@ -30,7 +30,7 @@ class Caract extends Component {
             if (this.state.opacity > opacityRef)
                 this.setState({
                     opacity: this.state.opacity < opacityRef+0.1 ? opacityRef : this.state.opacity - 0.1,
-                    color: 'green',
+                    color: 'red',
                 })
             
         }

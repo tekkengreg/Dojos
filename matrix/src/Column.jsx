@@ -32,7 +32,7 @@ class componentName extends Component {
         return (
             <div className="column" style={style}>
                 {
-                    [...Array(rows)].map((x, i) =>
+                    Array(rows).fill(0).map((x, i) =>
                         <Caract key={"caract" + i} index={i} currentIndex={(ref + count) % rows} />
                     )
                 }

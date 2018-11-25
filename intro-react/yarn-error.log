@@ -1,0 +1,26 @@
+Arguments: 
+  /usr/local/Cellar/node/10.7.0/bin/node /usr/local/bin/yarn -h
+
+PATH: 
+  /usr/local/Cellar/node/10.7.0/bin:/usr/local/opt/icu4c/sbin:/usr/local/opt/icu4c/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Volumes/Transcend/mongodb/bin
+
+Yarn version: 
+  1.7.0
+
+Node version: 
+  10.7.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: EISDIR: illegal operation on a directory, read
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
