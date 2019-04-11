@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import "../App.css";
 
 import Column from "./Column.jsx";
 
@@ -20,26 +20,24 @@ const rows = 40;
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      count: 1
-    };
-    setInterval(params => {
+    this.state={
+      counter:0
+    }
+    setInterval(()=>{
       this.setState({
-        count: this.state.count + 1
-      });
-    }, 1000);
+        counter: this.state.counter+1
+      })
+    },500)
   }
 
   render() {
-    const { count } = this.state;
-
+    const {counter} = this.state;
+    const colArray = Array(columns).fill(0);
     return (
       <div className="App" style={style.App}>
-        {Array(columns)
-          .fill(0)
-          .map((x, i) => (
-            <Column key={"column" + i} rows={rows} count={count} />
-          ))}
+        {colArray.map(() => (
+          <Column rows={rows} counter={counter}/>
+        ))}
       </div>
     );
   }

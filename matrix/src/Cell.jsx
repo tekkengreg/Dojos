@@ -2,25 +2,23 @@ import React, { Component } from 'react'
 
 
 const style = {
-    // fontFamily: 'monospace',
     lineHeight: 'normal',
     fontFamily: 'Noto Sans',
 
 }
 const opacityRef = 0.3
 
-class Caract extends Component {
+class Cell extends Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
             caract: String.fromCharCode(Math.round(Math.random() * 1000) + 192),
             opacity: opacityRef,
-            color: 'red'
+            color: 'green'
         }
     }
     componentWillReceiveProps(nextProps) {
-        if (nextProps.index === nextProps.currentIndex) {
-
+        if (nextProps.isActive) {
             this.setState({
                 caract: String.fromCharCode(Math.round(Math.random() * 1000) + 192),
                 opacity: 1,
@@ -30,12 +28,11 @@ class Caract extends Component {
             if (this.state.opacity > opacityRef)
                 this.setState({
                     opacity: this.state.opacity < opacityRef+0.1 ? opacityRef : this.state.opacity - 0.1,
-                    color: 'red',
+                    color: 'green',
                 })
             
         }
     }
-
 
     render() {
         const { color, opacity } = this.state
@@ -48,4 +45,4 @@ class Caract extends Component {
     }
 }
 
-export default Caract
+export default Cell;
