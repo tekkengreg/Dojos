@@ -1,18 +1,7 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./App.scss";
 
 import Column from "./Column.jsx";
-
-const style = {
-  App: {
-    width: "100vw",
-    height: "100vh",
-    display: "flex",
-    justifyContent: "space-around",
-    backgroundColor: "black",
-    overflow: "hidden"
-  }
-};
 
 const columns = 100;
 const rows = 40;
@@ -21,25 +10,28 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 1
+      counter: 0
     };
-    setInterval(params => {
+    setInterval(() => {
       this.setState({
-        count: this.state.count + 1
+        counter: this.state.counter + 1
       });
-    }, 1000);
+    }, 500);
   }
 
   render() {
-    const { count } = this.state;
-
+    const { counter } = this.state;
+    const colArray = Array(columns).fill(0);
     return (
-      <div className="App" style={style.App}>
-        {Array(columns)
-          .fill(0)
-          .map((x, i) => (
-            <Column key={"column" + i} rows={rows} count={count} />
-          ))}
+      <div className="App">
+        <h1>
+          Matrix in React
+          <br />
+          No canvas
+        </h1>
+        {colArray.map((col, index) => (
+          <Column key={`column-${index}`} rows={rows} counter={counter} />
+        ))}
       </div>
     );
   }

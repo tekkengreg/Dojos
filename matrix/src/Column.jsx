@@ -1,33 +1,29 @@
-import React, { Component } from 'react'
-import Cell from './Cell.jsx'
+import React, { Component } from "react";
+import Cell from "./Cell.jsx";
 
-const style = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-}
 class componentName extends Component {
-    constructor(props, context) {
-        super(props, context)
-        this.state = {
-            ref: Math.round(Math.random() * this.props.rows),
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeIndex: Math.floor(Math.random() * props.rows)
+    };
+  }
 
-    render() {
-        const { rows, count } = this.props;
-        const { ref } = this.state;
-
-        return (
-            <div className="column" style={style}>
-                {
-                    Array(rows).fill(0).map((x, i) =>
-                        <Cell key={"caract" + i} index={i} isActive={i === (ref + count) % rows} />
-                    )
-                }
-            </div>
-        )
-    }
+  render() {
+    const { rows, counter } = this.props;
+    const { activeIndex } = this.state;
+    const cellArray = Array(rows).fill(0);
+    return (
+      <div className="Column" >
+        {cellArray.map((item, index) => (
+          <Cell
+            key={`column-${index}`}
+            isActive={(activeIndex + counter) % rows === index}
+          />
+        ))}
+      </div>
+    );
+  }
 }
 
-export default componentName
+export default componentName;

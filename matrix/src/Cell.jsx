@@ -1,48 +1,46 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-
-const style = {
-    lineHeight: 'normal',
-    fontFamily: 'Noto Sans',
-
-}
-const opacityRef = 0.3
+const opacityRef = 0.3;
 
 class Cell extends Component {
-    constructor(props, context) {
-        super(props, context)
-        this.state = {
-            caract: String.fromCharCode(Math.round(Math.random() * 1000) + 192),
-            opacity: opacityRef,
-            color: 'green'
-        }
-    }
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.isActive) {
-            this.setState({
-                caract: String.fromCharCode(Math.round(Math.random() * 1000) + 192),
-                opacity: 1,
-                color: 'white',
-            })
-        } else {
-            if (this.state.opacity > opacityRef)
-                this.setState({
-                    opacity: this.state.opacity < opacityRef+0.1 ? opacityRef : this.state.opacity - 0.1,
-                    color: 'green',
-                })
-            
-        }
+  constructor(props, context) {
+    super(props, context);
+    this.char = this.getChar();
+    this.style = {
+      color: "grey"
+    };
+    this.opacity = opacityRef;
+  }
+
+  getChar() {
+    return String.fromCharCode(Math.floor(Math.random() * 1000 + 192));
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return(nextProps.isActive || this.opacity > opacityRef)
+      
+  }
+
+  render() {
+    const { isActive } = this.props;
+    if (isActive) {
+      this.style.color = "blue";
+      this.opacity = 1;
+      this.char = this.getChar();
+    } else {
+      this.style.color = "grey";
+      if (this.opacity > opacityRef) this.opacity -= 0.1;
     }
 
-    render() {
-        const { color, opacity } = this.state
-
-        return (
-            <span style={{ ...style, color: color, filter: 'opacity(' + opacity + ')' }} >
-                {this.state.caract}
-            </span>
-        )
-    }
+    return (
+      <span
+        className="Cell"
+        style={{ ...this.style, filter: "opacity(" + this.opacity + ")" }}
+      >
+        {this.char}
+      </span>
+    );
+  }
 }
 
 export default Cell;
